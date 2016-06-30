@@ -1,0 +1,8 @@
+{
+  "sounds.toggle": {
+    "category": "neutral",
+    "sounds": [
+      "items/toggle"
+    ]
+  }
+}

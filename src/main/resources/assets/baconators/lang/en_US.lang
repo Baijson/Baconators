@@ -1,0 +1,16 @@
+item.Baconator.name=Baconator
+item.Cluckinator.name=Cluckinator
+item.Jerkynator.name=Jerkynator
+item.Darkonator.name=Darkonator
+item.Squeakenator.name=Squeakenator
+
+item.tooltip.before=&7Hold &6SHIFT&7 for more info.
+
+item.tooltip.enabled=&7Enabled: &8[%s&8]
+item.tooltip.holding=&7Holding: &r%s
+item.tooltip.nothing=&7Nothing.
+item.tooltip.accepts=&7Accepted food:
+
+item.tooltip.bullets=&6•&7
+item.tooltip.checked.0=&4×
+item.tooltip.checked.1=&2×
