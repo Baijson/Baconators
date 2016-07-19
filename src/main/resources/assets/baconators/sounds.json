@@ -1,8 +1,20 @@
 {
-  "sounds.toggle": {
-    "category": "neutral",
+  "toggleSound": {
+    "category": "players",
     "sounds": [
-      "items/toggle"
+      {
+        "name": "baconators:toggle",
+        "stream": false
+      }
+    ]
+  },
+  "sizzleSound": {
+    "category": "players",
+    "sounds": [
+      {
+        "name": "baconators:toggle",
+        "stream": false
+      }
     ]
   }
 }

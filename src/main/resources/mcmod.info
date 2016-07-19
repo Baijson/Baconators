@@ -2,15 +2,15 @@
 {
   "modid": "baconators",
   "name": "Baconators",
-  "description": "Bacon - ON A STICK!!!",
+  "description": "Its like BACON!! ON A STICK !!",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
+  "url": "http://minecraft.curseforge.com/projects/baconators",
   "updateUrl": "",
   "authorList": ["Baijson"],
-  "credits": "...",
+  "credits": "Everyone using the mod. <3",
   "logoFile": "",
-  "screenshots": [],
+  "screenshots": ["screenshot.png"],
   "dependencies": []
 }
 ]

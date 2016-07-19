@@ -1,8 +1,8 @@
-item.Baconator.name=Baconator
-item.Cluckinator.name=Cluckinator
-item.Jerkynator.name=Jerkynator
-item.Darkonator.name=Darkonator
-item.Squeakenator.name=Squeakenator
+item.baconator.name=Baconator
+item.cluckinator.name=Cluckinator
+item.jerkynator.name=Jerkynator
+item.darkonator.name=Darkonator
+item.squeakenator.name=Squeakenator
 
 item.tooltip.before=&7Hold &6SHIFT&7 for more info.
 

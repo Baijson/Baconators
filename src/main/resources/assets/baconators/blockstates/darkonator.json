@@ -1,0 +1,187 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "particle": "baconators:particle",
+      "head": "baconators:head/darkonator"
+    }
+  },
+  "variants": {
+    "0": {
+      "model": "baconators:head/darkonator",
+      "textures": {
+        "base": "baconators:base/handle_dyed_00"
+      },
+      "submodel": {
+        "handle": {
+          "model": "baconators:handle_default"
+        }
+      }
+    },
+    "1": {
+      "model": "baconators:head/darkonator",
+      "textures": {
+        "base": "baconators:base/handle_dyed_01"
+      },
+      "submodel": {
+        "handle": {
+          "model": "baconators:handle_default"
+        }
+      }
+    },
+    "2": {
+      "model": "baconators:head/darkonator",
+      "textures": {
+        "base": "baconators:base/handle_dyed_02"
+      },
+      "submodel": {
+        "handle": {
+          "model": "baconators:handle_default"
+        }
+      }
+    },
+    "3": {
+      "model": "baconators:head/darkonator",
+      "textures": {
+        "base": "baconators:base/handle_dyed_03"
+      },
+      "submodel": {
+        "handle": {
+          "model": "baconators:handle_default"
+        }
+      }
+    },
+    "4": {
+      "model": "baconators:head/darkonator",
+      "textures": {
+        "base": "baconators:base/handle_dyed_04"
+      },
+      "submodel": {
+        "handle": {
+          "model": "baconators:handle_default"
+        }
+      }
+    },
+    "5": {
+      "model": "baconators:head/darkonator",
+      "textures": {
+        "base": "baconators:base/handle_dyed_05"
+      },
+      "submodel": {
+        "handle": {
+          "model": "baconators:handle_default"
+        }
+      }
+    },
+    "6": {
+      "model": "baconators:head/darkonator",
+      "textures": {
+        "base": "baconators:base/handle_dyed_06"
+      },
+      "submodel": {
+        "handle": {
+          "model": "baconators:handle_default"
+        }
+      }
+    },
+    "7": {
+      "model": "baconators:head/darkonator",
+      "textures": {
+        "base": "baconators:base/handle_dyed_07"
+      },
+      "submodel": {
+        "handle": {
+          "model": "baconators:handle_default"
+        }
+      }
+    },
+    "8": {
+      "model": "baconators:head/darkonator",
+      "textures": {
+        "base": "baconators:base/handle_dyed_08"
+      },
+      "submodel": {
+        "handle": {
+          "model": "baconators:handle_default"
+        }
+      }
+    },
+    "9": {
+      "model": "baconators:head/darkonator",
+      "textures": {
+        "base": "baconators:base/handle_dyed_09"
+      },
+      "submodel": {
+        "handle": {
+          "model": "baconators:handle_default"
+        }
+      }
+    },
+    "10": {
+      "model": "baconators:head/darkonator",
+      "textures": {
+        "base": "baconators:base/handle_dyed_10"
+      },
+      "submodel": {
+        "handle": {
+          "model": "baconators:handle_default"
+        }
+      }
+    },
+    "11": {
+      "model": "baconators:head/darkonator",
+      "textures": {
+        "base": "baconators:base/handle_dyed_11"
+      },
+      "submodel": {
+        "handle": {
+          "model": "baconators:handle_default"
+        }
+      }
+    },
+    "12": {
+      "model": "baconators:head/darkonator",
+      "textures": {
+        "base": "baconators:base/handle_dyed_12"
+      },
+      "submodel": {
+        "handle": {
+          "model": "baconators:handle_default"
+        }
+      }
+    },
+    "13": {
+      "model": "baconators:head/darkonator",
+      "textures": {
+        "base": "baconators:base/handle_dyed_13"
+      },
+      "submodel": {
+        "handle": {
+          "model": "baconators:handle_default"
+        }
+      }
+    },
+    "14": {
+      "model": "baconators:head/darkonator",
+      "textures": {
+        "base": "baconators:base/handle_dyed_14"
+      },
+      "submodel": {
+        "handle": {
+          "model": "baconators:handle_default"
+        }
+      }
+    },
+    "15": {
+      "model": "baconators:head/darkonator",
+      "textures": {
+        "base": "baconators:base/handle_dyed_15"
+      },
+      "submodel": {
+        "handle": {
+          "model": "baconators:handle_default"
+        }
+      }
+    }
+  }
+}
