@@ -1,5 +1,6 @@
 package mod.baijson.baconators.items;
 
+import com.mojang.authlib.GameProfile;
 import mod.baijson.baconators.assets.Helpers;
 import mod.baijson.baconators.client.TooltipUtil;
 import mod.baijson.baconators.config.IOptions;
@@ -17,8 +18,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Optional;
@@ -373,8 +376,16 @@ public class Baconator extends Item implements IEdible {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
-        TooltipUtil.construct(tooltip, () -> {
 
+        /**
+         * It really is, his birthday!
+         */
+        if (player != null && player.getDisplayNameString().toLowerCase().contains("darkosto")) {
+            tooltip.add(I18n.format ( "item.birthday.name" ).replace ( "&", "\u00a7" ));
+            tooltip.add("");
+        }
+
+        TooltipUtil.construct(tooltip, () -> {
             TooltipUtil.insert(tooltip, I18n.format("item.tooltip.enabled",
                     I18n.format("item.tooltip.checked." + (getEnabled(stack) ? "1" : "0"))));
 
@@ -441,20 +452,6 @@ public class Baconator extends Item implements IEdible {
             }
         }
         return new FoodValues(0, 0F);
-    }
-
-    /**
-     *
-     * @param stack
-     * @return
-     */
-    @Override
-    public String getItemStackDisplayName(ItemStack stack) {
-        EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
-        if (player != null && player.getDisplayNameString().toLowerCase().contains("darkosto")) {
-            return I18n.format ( "item.birthday.name" ).replace ( "&", "\u00a7" );
-        }
-        return super.getItemStackDisplayName(stack);
     }
 
     /**
