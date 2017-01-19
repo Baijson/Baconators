@@ -17,12 +17,12 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 
-version = "1.10.2-3.0.3"
+version = "1.10.2-3.0.4"
 group = "mod.mod.baijson.baconators" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "baconators"
 
 minecraft {
-    version = "1.10.2-12.18.1.2014"
+    version = "1.10.2-12.18.3.2185"
     runDir = "run"
 
     // the mappings can be changed at any time, and must be in the following format.
@@ -41,7 +41,7 @@ repositories {
 }
 
 dependencies {
-    deobfCompile "applecore:AppleCore:1.10.2-1.3.5:deobf"
+    deobfCompile "applecore:AppleCore:1.10.2-2.1.0:deobf"
 }
 
 processResources {
