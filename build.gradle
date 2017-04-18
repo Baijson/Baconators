@@ -17,7 +17,7 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 
-version = "1.10.2-3.0.5"
+version = "1.10.2-3.0.6"
 group = "mod.mod.baijson.baconators" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "baconators"
 
