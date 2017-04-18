@@ -2,7 +2,6 @@ package mod.baijson.baconators.items;
 
 import mod.baijson.baconators.assets.Helpers;
 import mod.baijson.baconators.client.TooltipUtil;
-import mod.baijson.baconators.config.IOptions;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -28,6 +27,7 @@ import squeek.applecore.api.food.FoodValues;
 import squeek.applecore.api.food.IEdible;
 import squeek.applecore.api.food.ItemFoodProxy;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
@@ -36,18 +36,32 @@ import java.util.List;
  */
 @Optional.Interface(iface = "squeek.applecore.api.food.IEdible", modid = "AppleCore", striprefs = true)
 public class Baconator extends Item implements IEdible {
-    private IOptions itemOptions;
+
+    private int capacity;
+    private String[] accepted = new String[]{};
 
     /**
      * @param resource
-     * @param options
+     * @param accepted
      * @return
      */
-    static public Baconator create(ResourceLocation resource, IOptions options) {
+    public static Baconator create(ResourceLocation resource, String[] accepted) {
+        return create(resource, 64, accepted);
+    }
+
+    /**
+     * @param resource
+     * @param capacity
+     * @param accepted
+     * @return
+     */
+    public static Baconator create(ResourceLocation resource, int capacity, String[] accepted) {
         Baconator self = new Baconator(resource);
-        self.register(options);
+        self.register(capacity, accepted);
+
         return self;
     }
+
 
     /**
      * @param resource
@@ -67,24 +81,26 @@ public class Baconator extends Item implements IEdible {
     }
 
     /**
-     * @param options
+     * @param capacity
+     * @param accepted
      */
-    protected void register(IOptions options) {
-        if (options.getEnabled()) {
-            this.itemOptions = options;
-            GameRegistry.register(this);
-        }
+    protected void register(int capacity, String[] accepted) {
+        this.capacity = capacity;
+        this.accepted = accepted;
+
+        GameRegistry.register(this);
     }
 
     /**
-     * @param stack
      * @param world
      * @param player
      * @param hand
      * @return
      */
+    @Nonnull
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
+        ItemStack stack = player.getHeldItem(hand);
         if (!player.isSneaking()) {
             if (getCurrentItemStack(stack) != null && getStorageItemCount(stack) > 0) {
                 if (player.getFoodStats().needFood()) {
@@ -99,6 +115,7 @@ public class Baconator extends Item implements IEdible {
         }
         return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
     }
+
 
     /**
      * @param stack
@@ -131,6 +148,8 @@ public class Baconator extends Item implements IEdible {
      * @param stack
      * @return
      */
+    @Nonnull
+    @Override
     public EnumAction getItemUseAction(ItemStack stack) {
         return EnumAction.EAT;
     }
@@ -139,6 +158,7 @@ public class Baconator extends Item implements IEdible {
      * @param stack
      * @return
      */
+    @Override
     public int getMaxItemUseDuration(ItemStack stack) {
         return 32;
     }
@@ -152,10 +172,10 @@ public class Baconator extends Item implements IEdible {
     @Nullable
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving) {
+
         if (getCurrentItemStack(stack) != null && getStorageItemCount(stack) > 0) {
             EntityPlayer player = ((entityLiving instanceof EntityPlayer) ? (EntityPlayer) entityLiving : null);
             if (player != null) {
-
                 FoodStats stats = player.getFoodStats();
                 ItemFood foodItem = (ItemFood) getCurrentItemStack(stack).getItem();
                 ItemStack foodStack = new ItemStack(foodItem);
@@ -170,8 +190,6 @@ public class Baconator extends Item implements IEdible {
                     } else {
                         player.getFoodStats().addStats(foodItem, foodStack);
                     }
-
-                    // player.getFoodStats ( ).addStats ( foodItem, foodStack );
 
                     if (stats.getFoodLevel() >= 20) {
                         world.playSound(null, player.getPosition(), SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.3F, (float) (0.5 + Math.random() * 0.5));
@@ -231,8 +249,6 @@ public class Baconator extends Item implements IEdible {
                             player.getFoodStats().addStats(foodItem, foodStack);
                         }
 
-                        //player.getFoodStats ( ).addStats ( foodItem, foodStack );
-
                         if (stats.getFoodLevel() >= 20) {
                             world.playSound(null, player.getPosition(), SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.3F, (float) (0.5 + Math.random() * 0.5));
                         }
@@ -252,9 +268,9 @@ public class Baconator extends Item implements IEdible {
     public boolean isItemStackAccepted(ItemStack stack, ItemStack compare) {
 
         if (compare.getItem() instanceof ItemFood) {
-            for (int i = 0; i < itemOptions.getAcceptedFood().length; i++) {
+            for (int i = 0; i < this.accepted.length; i++) {
                 try {
-                    ItemStack itemStack = Helpers.getItemStack(itemOptions.getAcceptedFood()[i]);
+                    ItemStack itemStack = Helpers.getItemStack(this.accepted[i]);
                     if (itemStack != null && itemStack.isItemEqual(compare)) {
                         if (itemStack.getItem() instanceof ItemFood) {
                             return true;
@@ -273,9 +289,7 @@ public class Baconator extends Item implements IEdible {
      * @return
      */
     public ItemStack getCurrentItemStack(ItemStack stack) {
-        return (getTagCompound(stack).hasKey("storage_item") ?
-                ItemStack.loadItemStackFromNBT(getTagCompound(stack).getCompoundTag("storage_item"))
-                : null);
+        return (getTagCompound(stack).hasKey("storage_item") ? new ItemStack(getTagCompound(stack).getCompoundTag("storage_item")) : null);
     }
 
     /**
@@ -307,11 +321,15 @@ public class Baconator extends Item implements IEdible {
             setCurrentItemStack(stack, items);
         }
 
-        for (int i = 0; i < items.stackSize; i++) {
-            if (getStorageItemCount(stack) < itemOptions.getMaxCapacity()) {
+        for (int i = 0; i < items.getCount(); i++) {
+            if (getStorageItemCount(stack) < this.capacity) {
                 incStorageItemCount(stack, 1);
                 inventory.decrStackSize(slot, 1);
             } else {
+                /**
+                 * Play sizzle sound here? i think...
+                 */
+
                 return;
             }
         }
@@ -375,36 +393,28 @@ public class Baconator extends Item implements IEdible {
             TooltipUtil.insert(tooltip, I18n.format("item.tooltip.enabled",
                     I18n.format("item.tooltip.checked." + (getEnabled(stack) ? "1" : "0"))));
 
-            String _current = String.format("&8[&r%s/%s&8]&r", getStorageItemCount(stack), itemOptions.getMaxCapacity());
+            String _current = String.format("&8[&r%s/%s&8]&r", getStorageItemCount(stack), this.capacity);
 
             TooltipUtil.insert(tooltip, I18n.format("item.tooltip.holding",
                     (getCurrentItemStack(stack) != null ? getCurrentItemStack(stack).getDisplayName() + " " + _current : I18n.format("item.tooltip.nothing"))));
 
-            if (itemOptions.getTooltipsEnabled()) {
-                TooltipUtil.insert(tooltip, "");
-                TooltipUtil.insert(tooltip, I18n.format("item.tooltip.accepts"));
-                for (int i = 0; i < itemOptions.getAcceptedFood().length; i++) {
-                    try {
-                        ItemStack foodStack = Helpers.getItemStack(itemOptions.getAcceptedFood()[i].toString());
-                        if (foodStack != null) {
-                            TooltipUtil.insert(tooltip, String.format("%s %s",
-                                    I18n.format("item.tooltip.bullets"),
-                                    foodStack.getDisplayName()
-                            ));
-                        }
-                    } catch (Exception e) {
-                        FMLLog.log(Level.WARN, e.getMessage());
+            TooltipUtil.insert(tooltip, "");
+            TooltipUtil.insert(tooltip, I18n.format("item.tooltip.accepts"));
+            for (int i = 0; i < this.accepted.length; i++) {
+                try {
+                    ItemStack foodStack = Helpers.getItemStack(this.accepted[i].toString());
+                    if (foodStack != null) {
+                        TooltipUtil.insert(tooltip, String.format("%s %s",
+                                I18n.format("item.tooltip.bullets"),
+                                foodStack.getDisplayName()
+                        ));
                     }
+                } catch (Exception e) {
+                    FMLLog.log(Level.WARN, e.getMessage());
                 }
             }
-        });
-    }
 
-    /**
-     * @return
-     */
-    public IOptions getOptions() {
-        return this.itemOptions;
+        });
     }
 
     /**

@@ -1,53 +1,50 @@
 package mod.baijson.baconators;
 
-import mod.baijson.baconators.assets.Reference;
 import mod.baijson.baconators.common.ICommonProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 /**
  * File created by Baijson.
  */
-@Mod( modid = Reference.MODID, name = Reference.MODNM, version = Reference.VERSION )
+@Mod(modid = Baconators.MODID, name = Baconators.MODNM, version = Baconators.VERSION)
 public class Baconators {
 
-	/**
-	 * Instance
-	 */
-	@Mod.Instance( value = Reference.MODID )
-	static public Baconators instance;
+    public static final String MODID = "baconators";
+    public static final String MODNM = "Baconators";
 
-	/**
-	 * Proxy setup
-	 */
-	@SidedProxy( clientSide = Reference.PROXY_CLIENT, serverSide = Reference.PROXY_COMMON )
-	static public ICommonProxy proxy;
+    public static final String VERSION = "3.1.0";
 
-	/**
-	 * @param event
-	 */
-	@Mod.EventHandler
-	public void init ( FMLPreInitializationEvent event ) {
-		proxy.init ( event );
-	}
+    public static final String PROXY_COMMON = "mod.baijson." + MODID + ".common.CommonProxy";
+    public static final String PROXY_CLIENT = "mod.baijson." + MODID + ".client.ClientProxy";
 
-	/**
-	 * @param event
-	 */
-	@Mod.EventHandler
-	public void load ( FMLInitializationEvent event ) {
-		instance = this;
-		proxy.load ( event );
-	}
+    /**
+     * Instance
+     */
+    @Mod.Instance(value = MODID)
+    static public Baconators instance;
 
-	/**
-	 * @param event
-	 */
-	@Mod.EventHandler
-	public void post ( FMLPostInitializationEvent event ) {
-		proxy.post ( event );
-	}
+    /**
+     * Proxy setup
+     */
+    @SidedProxy(clientSide = PROXY_CLIENT, serverSide = PROXY_COMMON)
+    static public ICommonProxy proxy;
+
+    /**
+     * @param event
+     */
+    @Mod.EventHandler
+    public void init(FMLPreInitializationEvent event) {
+        proxy.init(event);
+    }
+
+    /**
+     * @param event
+     */
+    @Mod.EventHandler
+    public void load(FMLInitializationEvent event) {
+        instance = this;
+    }
 }
