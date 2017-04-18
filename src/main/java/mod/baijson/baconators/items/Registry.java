@@ -22,7 +22,6 @@ public class Registry {
 	static public Item cluckinator;
 	static public Item jerkynator;
 	static public Item darkonator;
-	static public Item squeakenator;
 
 	static public SoundEvent toggleSound;
 	static public SoundEvent sizzleSound;
@@ -103,25 +102,6 @@ public class Registry {
 				  'P', new ItemStack ( Blocks.PLANKS, 1, OreDictionary.WILDCARD_VALUE )
 			);
 			OreDictionary.registerOre ( "itemBaconator", darkonator );
-		}
-
-		/**
-		 * Squeakenator.
-		 *
-		 * https://beam.pro/Squeaker
-		 */
-		if ( Settings.saItemEnabled ) {
-			squeakenator = Baconator.create ( new ResourceLocation ( Reference.MODID, "squeakenator" ),
-				  new Options ( Settings.saItemEnabled, Settings.saDyeableItem, Settings.saTTipEnabled, Settings.saMaxFoodCapacity, Settings.saAcceptedFoodList ) );
-
-			GameRegistry.addRecipe ( new ItemStack ( squeakenator, 1 ),
-				  "WRW", "IPI", "IPI",
-				  'W', new ItemStack ( Blocks.WOOL, 1, 1 ),
-				  'R', new ItemStack ( Items.REDSTONE, 1 ),
-				  'I', new ItemStack ( Items.IRON_INGOT, 1, OreDictionary.WILDCARD_VALUE ),
-				  'P', new ItemStack ( Blocks.PLANKS, 1, OreDictionary.WILDCARD_VALUE )
-			);
-			OreDictionary.registerOre ( "itemBaconator", squeakenator );
 		}
 
 		/**

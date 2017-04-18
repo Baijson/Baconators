@@ -28,8 +28,6 @@ public class ModelHandler {
 			register ( Registry.jerkynator );
 		if ( Registry.darkonator != null && Settings.daItemEnabled )
 			register ( Registry.darkonator );
-		if ( Registry.squeakenator != null && Settings.saItemEnabled )
-			register ( Registry.squeakenator );
 	}
 
 	/**

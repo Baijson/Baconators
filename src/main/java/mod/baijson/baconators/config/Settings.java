@@ -23,31 +23,26 @@ public class Settings {
 	static ConfigCategory caSection = new ConfigCategory ( "cluckinator" );
 	static ConfigCategory jaSection = new ConfigCategory ( "jerkynator" );
 	static ConfigCategory daSection = new ConfigCategory ( "darkonator" );
-	static ConfigCategory saSection = new ConfigCategory ( "squeakenator" );
 
 	static public boolean baItemEnabled = true;
 	static public boolean caItemEnabled = false;
 	static public boolean jaItemEnabled = false;
 	static public boolean daItemEnabled = false;
-	static public boolean saItemEnabled = false;
 
 	static public boolean baTTipEnabled = true;
 	static public boolean caTTipEnabled = true;
 	static public boolean jaTTipEnabled = true;
 	static public boolean daTTipEnabled = true;
-	static public boolean saTTipEnabled = true;
 
 	static public boolean baDyeableItem = true;
 	static public boolean caDyeableItem = true;
 	static public boolean jaDyeableItem = true;
 	static public boolean daDyeableItem = true;
-	static public boolean saDyeableItem = true;
 
 	static public int baMaxFoodCapacity = 64;
 	static public int caMaxFoodCapacity = 64;
 	static public int jaMaxFoodCapacity = 64;
 	static public int daMaxFoodCapacity = 64;
-	static public int saMaxFoodCapacity = 64;
 
 	static public String[] baAcceptedFoodList = new String[]{
 		  "minecraft:cooked_porkchop"
@@ -60,9 +55,6 @@ public class Settings {
 	};
 	static public String[] daAcceptedFoodList = new String[]{
 		  "minecraft:bread"
-	};
-	static public String[] saAcceptedFoodList = new String[]{
-		  "minecraft:apple"
 	};
 
 	/**
@@ -105,7 +97,6 @@ public class Settings {
 		config.setCategoryPropertyOrder ( caSection.getQualifiedName ( ), order );
 		config.setCategoryPropertyOrder ( jaSection.getQualifiedName ( ), order );
 		config.setCategoryPropertyOrder ( daSection.getQualifiedName ( ), order );
-		config.setCategoryPropertyOrder ( saSection.getQualifiedName ( ), order );
 
 		/**
 		 * Baconator
@@ -182,24 +173,5 @@ public class Settings {
 		property = config.get ( daSection.getQualifiedName ( ), "Accepted food", daAcceptedFoodList,
 			  "List of accepted food items, this item can hold." );
 		daAcceptedFoodList = property.getStringList ( );
-
-		/**
-		 * Squeakenator
-		 */
-		property = config.get ( saSection.getQualifiedName ( ), "Enabled", saItemEnabled,
-			  "Set to false to disable this item. default=false" );
-		saItemEnabled = property.getBoolean ( );
-		property = config.get ( saSection.getQualifiedName ( ), "Dyeable handles", saDyeableItem,
-			  "Allow this item to be recolored with dyes. default=true" );
-		saDyeableItem = property.getBoolean ( );
-		property = config.get ( saSection.getQualifiedName ( ), "Advanced tooltips", saTTipEnabled,
-			  "Detailed tooltips, populated with a list of accepted food items." );
-		saTTipEnabled = property.getBoolean ( );
-		property = config.get ( saSection.getQualifiedName ( ), "Maximum capacity", saMaxFoodCapacity,
-			  "Maximum capacity this item can hold. default=64" );
-		saMaxFoodCapacity = property.getInt ( );
-		property = config.get ( saSection.getQualifiedName ( ), "Accepted food", saAcceptedFoodList,
-			  "List of accepted food items, this item can hold." );
-		saAcceptedFoodList = property.getStringList ( );
 	}
 }
