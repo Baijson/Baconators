@@ -371,15 +371,6 @@ public class Baconator extends Item implements IEdible {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
-
-        /**
-         * It really is, his birthday!
-         */
-        if (player != null && player.getDisplayNameString().toLowerCase().contains("darkosto")) {
-            tooltip.add(I18n.format ( "item.birthday.name" ).replace ( "&", "\u00a7" ));
-            tooltip.add("");
-        }
-
         TooltipUtil.construct(tooltip, () -> {
             TooltipUtil.insert(tooltip, I18n.format("item.tooltip.enabled",
                     I18n.format("item.tooltip.checked." + (getEnabled(stack) ? "1" : "0"))));
