@@ -17,7 +17,7 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 
-version = "1.11.2-3.1.0"
+version = "1.11.2-3.1.1"
 group = "mod.mod.baijson.baconators" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "baconators"
 
@@ -41,6 +41,8 @@ repositories {
 }
 
 dependencies {
+    compile project( ":Skeleton" )
+
     deobfCompile "applecore:AppleCore:1.11.2-2.1.2:deobf"
 }
 
