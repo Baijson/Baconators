@@ -1,0 +1,9 @@
+item.baconator.name=Baconator
+item.cluckinator.name=Cluckinator
+item.jerkynator.name=Jerkynator
+item.darkonator.name=Darkonator
+
+item.tooltip.enabled=&7Ingeschakeld: &r%s
+item.tooltip.holding=&7Gevuld: &r%s
+item.tooltip.nothing=&7Niets.
+item.tooltip.accepts=&7Geaccepteerd voedsel:

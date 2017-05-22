@@ -1,6 +1,6 @@
 package mod.baijson.baconators;
 
-import mod.baijson.baconators.common.ICommonProxy;
+import mod.baijson.skeleton.common.ISidedProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -35,7 +35,7 @@ public class Baconators {
      * Proxy setup
      */
     @SidedProxy(clientSide = PROXY_CLIENT, serverSide = PROXY_COMMON)
-    static public ICommonProxy proxy;
+    static public ISidedProxy proxy;
 
     /**
      * @param event

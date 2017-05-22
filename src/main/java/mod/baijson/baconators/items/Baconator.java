@@ -1,8 +1,7 @@
 package mod.baijson.baconators.items;
 
 import mod.baijson.baconators.assets.Helpers;
-import mod.baijson.baconators.client.TooltipUtil;
-import net.minecraft.client.resources.I18n;
+import mod.baijson.skeleton.client.Tooltip;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -389,31 +388,25 @@ public class Baconator extends Item implements IEdible {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
-        TooltipUtil.construct(tooltip, () -> {
-            TooltipUtil.insert(tooltip, I18n.format("item.tooltip.enabled",
-                    I18n.format("item.tooltip.checked." + (getEnabled(stack) ? "1" : "0"))));
+        Tooltip.construct(tooltip, () -> {
+            Tooltip.insert(tooltip, "item.tooltip.enabled", Tooltip.checked(getEnabled(stack)));
+            Tooltip.insert(tooltip, "item.tooltip.holding", getCurrentItemStack(stack) != null
+                    ? getCurrentItemStack(stack).getDisplayName() + " " + String.format("&8[&r%s/%s&8]&r", getStorageItemCount(stack), this.capacity)
+                    : "item.tooltip.nothing");
 
-            String _current = String.format("&8[&r%s/%s&8]&r", getStorageItemCount(stack), this.capacity);
+            Tooltip.insert(tooltip, "");
+            Tooltip.insert(tooltip, "item.tooltip.accepts");
 
-            TooltipUtil.insert(tooltip, I18n.format("item.tooltip.holding",
-                    (getCurrentItemStack(stack) != null ? getCurrentItemStack(stack).getDisplayName() + " " + _current : I18n.format("item.tooltip.nothing"))));
-
-            TooltipUtil.insert(tooltip, "");
-            TooltipUtil.insert(tooltip, I18n.format("item.tooltip.accepts"));
             for (int i = 0; i < this.accepted.length; i++) {
                 try {
-                    ItemStack foodStack = Helpers.getItemStack(this.accepted[i].toString());
-                    if (foodStack != null) {
-                        TooltipUtil.insert(tooltip, String.format("%s %s",
-                                I18n.format("item.tooltip.bullets"),
-                                foodStack.getDisplayName()
-                        ));
+                    ItemStack accepting = Helpers.getItemStack(this.accepted[i].toString());
+                    if (accepting != null) {
+                        Tooltip.insert(tooltip, Tooltip.bullets() + " " + accepting.getDisplayName());
                     }
                 } catch (Exception e) {
                     FMLLog.log(Level.WARN, e.getMessage());
                 }
             }
-
         });
     }
 

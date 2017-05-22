@@ -3,13 +3,7 @@ item.cluckinator.name=Cluckinator
 item.jerkynator.name=Jerkynator
 item.darkonator.name=Darkonator
 
-item.tooltip.before=&7Hold &6SHIFT&7 for more info.
-
-item.tooltip.enabled=&7Enabled: &8[%s&8]
+item.tooltip.enabled=&7Enabled: &r%s
 item.tooltip.holding=&7Holding: &r%s
 item.tooltip.nothing=&7Nothing.
 item.tooltip.accepts=&7Accepted food:
-
-item.tooltip.bullets=&6•&7
-item.tooltip.checked.0=&4×
-item.tooltip.checked.1=&2×
