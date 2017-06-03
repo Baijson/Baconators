@@ -1,1 +1,9 @@
+item.baconator.name=Speckinator
+item.cluckinator.name=Gluckinator
+item.jerkynator.name=Trockenfleischinator
+item.darkonator.name=Brotinator
 
+item.tooltip.enabled=&7Aktiviert: &r%s
+item.tooltip.holding=&7Enthält: &r%s
+item.tooltip.nothing=&7Nichts.
+item.tooltip.accepts=&7Akzeptierte Nahrungsmittel:
